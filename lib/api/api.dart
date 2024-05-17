@@ -4,9 +4,9 @@ import 'package:project/models/movie.dart';
 import 'package:http/http.dart' as http;
 
 class API {
-  Future<List<Movie>> getUpcomingMovies() async {
+  Future<List<Movie>> getMoviesOnTheaters() async {
     final response = await http.get(
-        Uri.parse('${Constants.baseUrl}/3/movie/upcoming?api_key=${Constants.apiKey}'));
+        Uri.parse('${Constants.baseUrl}/3/movie/now_playing?api_key=${Constants.apiKey}'));
     if (response.statusCode == 200) {
       try {
         final decodedData = jsonDecode(response.body)['results'] as List;

@@ -19,7 +19,7 @@ class _CarrouselState extends State<Carrousel> {
   @override
   void initState() {
     super.initState();
-    upComingMovies = API().getUpcomingMovies();
+    upComingMovies = API().getMoviesOnTheaters();
   }
 
   @override
