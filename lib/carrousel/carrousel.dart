@@ -1,72 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:project/api/api.dart';
+import 'package:project/constants.dart';
+import 'package:project/models/movie.dart';
 
-List<String> imgList = [
-  "assets/img/1.jpg",
-  "assets/img/2.jpg",
-  "assets/img/3.jpg",
-];
+// Ignore other imports...
 
-// ignore: camel_case_types
-class carrousel extends StatelessWidget {
-  const carrousel({super.key});
+late Future<List<Movie>> upComingMovies;
+
+class Carrousel extends StatefulWidget {
+  const Carrousel({Key? key}) : super(key: key);
+
+  @override
+  State<Carrousel> createState() => _CarrouselState();
+}
+
+class _CarrouselState extends State<Carrousel> {
+  @override
+  void initState() {
+    super.initState();
+    upComingMovies = API().getUpcomingMovies();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children:[ CarouselSlider(
-          options: CarouselOptions(
-            autoPlay: true,
-            aspectRatio: 2.0,
-            enlargeCenterPage: true,
-          ),
-          items: imageSliders),
-      ]
+    return Container(
+      alignment: Alignment.topCenter, // Alinea el carrusel en la parte superior
+      margin: const EdgeInsets.only(top: 15), // Margen superior
+      child: FutureBuilder<List<Movie>>(
+        future: upComingMovies,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text(snapshot.error.toString()),
+            );
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(
+              child: Text('No hay datos disponibles'),
+            );
+          } else {
+            List<Movie> movies = snapshot.data!;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  'Próximas Películas',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 10),
+                CarouselSlider(
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    viewportFraction: 0.51, 
+                    height: 300,
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    autoPlayAnimationDuration: const Duration(seconds: 2),
+                    enlargeCenterPage: true,
+                  ),
+                  items: movies.map((movie) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(15), // Bordes redondeados
+                          child: Image.network(
+                            '${Constants.imagePath}${movie.posterPath}',
+                            filterQuality: FilterQuality.high,
+                            fit: BoxFit.cover,
+                            // Puedes ajustar el ancho según tus necesidades
+                            width: MediaQuery.of(context).size.width,
+                            height: 300, // Altura deseada
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                ),
+              ],
+            );
+          }
+        },
+      ),
     );
-  
   }
 }
-
-final List<Widget> imageSliders = imgList
-    .map((item) => Container(
-          margin: const EdgeInsets.only(top: 20.0),
-          child: Container(
-            margin: const EdgeInsets.all(5.0),
-            child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                child: Stack(
-                  children: <Widget>[
-                    Image.asset(item, fit: BoxFit.cover, width: 1000.0),
-                    Positioned(
-                      bottom: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromARGB(200, 0, 0, 0),
-                              Color.fromARGB(0, 0, 0, 0)
-                            ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                          ),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 20.0),
-                        child: Text(
-                          'No. ${imgList.indexOf(item)} imagen',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )),
-          ),
-        ))
-    .toList();
