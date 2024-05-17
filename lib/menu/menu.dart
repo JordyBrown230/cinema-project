@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project/carrousel/carrousel.dart';
+import 'package:project/menu/submenu/home/home.dart';
+// import 'package:project/home/carrousel/carrousel.dart';
+// import 'package:project/home/ListViewUpcomingMovies/upcomingMovies.dart';
 
 const appTitle = 'Cine';
 
@@ -29,11 +31,8 @@ class _MyHomePageState extends State<MyHomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Carrousel(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    // Carrousel(),
+    HomePage(),
     Text(
       'Index 2: School',
       style: optionStyle,

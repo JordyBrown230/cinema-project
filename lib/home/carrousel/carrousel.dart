@@ -9,7 +9,7 @@ import 'package:project/models/movie.dart';
 late Future<List<Movie>> upComingMovies;
 
 class Carrousel extends StatefulWidget {
-  const Carrousel({Key? key}) : super(key: key);
+  const Carrousel({super.key});
 
   @override
   State<Carrousel> createState() => _CarrouselState();
@@ -48,13 +48,13 @@ class _CarrouselState extends State<Carrousel> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
-                  'Próximas Películas',
+                  'Películas en cartelera',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 CarouselSlider(
                   options: CarouselOptions(
                     autoPlay: true,
