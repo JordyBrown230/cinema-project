@@ -10,6 +10,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      return const Menu();
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Menu(),
+    );
   }
 }

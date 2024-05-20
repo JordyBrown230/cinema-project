@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/menu/submenu/home/home.dart';
-// import 'package:project/home/carrousel/carrousel.dart';
-// import 'package:project/home/ListViewUpcomingMovies/upcomingMovies.dart';
+import 'package:project/theme/app_theme.dart';
 
 const appTitle = 'Cine';
 
@@ -10,9 +9,10 @@ class Menu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: appTitle),
+      home: const MyHomePage(title: appTitle),
+      theme: AppTheme.themeData,
     );
   }
 }
@@ -28,11 +28,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static const List<Widget> _widgetOptions = <Widget>[
-    // Carrousel(),
     HomePage(),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
     Text(
       'Index 2: School',
       style: optionStyle,
@@ -47,72 +52,67 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String whiteColor = "#E8DFCA".replaceAll('#', '0xff');
-    String nvcolor = "#4F6F52".replaceAll('#', '0xff');
     return Scaffold(
-      backgroundColor: Color(int.parse(whiteColor)),
       appBar: AppBar(
-        title: Text(
-          appTitle,
-          style: TextStyle(fontWeight: FontWeight.bold,color: Color(int.parse(whiteColor))),
-        ),
+        title: const Text(appTitle),
         leading: Builder(
           builder: (context) {
             return IconButton(
-              icon: Icon(Icons.menu,color: Color(int.parse(whiteColor)),),
+              icon: const Icon(Icons.menu),
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
             );
           },
         ),
-        backgroundColor: Color(int.parse(nvcolor)),
       ),
-      body: 
-      Center(
-        child: _widgetOptions[_selectedIndex],
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
+        backgroundColor: AppTheme.backgroundColor,
         child: ListView(
-          // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Color(int.parse(nvcolor)),
+                color: Theme.of(context).colorScheme.secondary,
               ),
-              child: Text(appTitle,style: TextStyle(fontWeight: FontWeight.bold,color: Color(int.parse(whiteColor))),),
+              child: Text(
+                appTitle,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
             ),
             ListTile(
-              title: const Text('Home'),
+              title: Text(
+                'Home',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
               selected: _selectedIndex == 0,
               onTap: () {
-                // Update the state of the app
                 _onItemTapped(0);
-                // Then close the drawer
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: const Text('Business'),
+              title: Text(
+                'Business',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
               selected: _selectedIndex == 1,
               onTap: () {
-                // Update the state of the app
                 _onItemTapped(1);
-                // Then close the drawer
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: const Text('School'),
+              title: Text(
+                'School',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
               selected: _selectedIndex == 2,
               onTap: () {
-                // Update the state of the app
                 _onItemTapped(2);
-                // Then close the drawer
                 Navigator.pop(context);
               },
             ),

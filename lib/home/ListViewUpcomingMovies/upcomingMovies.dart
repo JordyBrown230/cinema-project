@@ -20,43 +20,41 @@ class _UpComingMoviesState extends State<UpComingMovies> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(height: 10),
-          const Text(
-            'Próximas Películas',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+    return Column(
+      children: [
+        const SizedBox(height: 10),
+        const Text(
+          'Próximas Películas',
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
           ),
-          const SizedBox(height: 10),
-          FutureBuilder<List<Movie>>(
-            future: futureMovies,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              } else if (snapshot.hasError) {
-                return Center(child: Text('Error: ${snapshot.error}'));
-              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return const Center(child: Text('No hay películas próximas.'));
-              } else {
-                return Container(
-                  height: 250,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return _buildCard(snapshot.data![index]);
-                    },
-                  ),
-                );
-              }
-            },
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 10),
+        FutureBuilder<List<Movie>>(
+          future: futureMovies,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return const Center(child: Text('No hay películas próximas.'));
+            } else {
+              return SizedBox(
+                height: 250,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                    return _buildCard(snapshot.data![index]);
+                  },
+                ),
+              );
+            }
+          },
+        ),
+      ],
     );
   }
 

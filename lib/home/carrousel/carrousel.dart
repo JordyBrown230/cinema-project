@@ -4,10 +4,6 @@ import 'package:project/api/api.dart';
 import 'package:project/constants.dart';
 import 'package:project/models/movie.dart';
 
-// Ignore other imports...
-
-late Future<List<Movie>> upComingMovies;
-
 class Carrousel extends StatefulWidget {
   const Carrousel({super.key});
 
@@ -16,6 +12,8 @@ class Carrousel extends StatefulWidget {
 }
 
 class _CarrouselState extends State<Carrousel> {
+  late Future<List<Movie>> upComingMovies;
+
   @override
   void initState() {
     super.initState();
@@ -68,14 +66,13 @@ class _CarrouselState extends State<Carrousel> {
                     return Builder(
                       builder: (BuildContext context) {
                         return ClipRRect(
-                          borderRadius: BorderRadius.circular(15), // Bordes redondeados
+                          borderRadius: BorderRadius.circular(15),
                           child: Image.network(
                             '${Constants.imagePath}${movie.posterPath}',
                             filterQuality: FilterQuality.high,
                             fit: BoxFit.cover,
-                            // Puedes ajustar el ancho según tus necesidades
                             width: MediaQuery.of(context).size.width,
-                            height: 300, // Altura deseada
+                            height: 300, 
                           ),
                         );
                       },
