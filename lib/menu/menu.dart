@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/home/ListViewCategories/view_categories.dart';
 import 'package:project/menu/submenu/home/home.dart';
 import 'package:project/theme/app_theme.dart';
 
@@ -29,19 +30,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    CategoriesScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -84,6 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             ListTile(
+              leading: const Icon(Icons.home, color: Colors.white,),
               title: Text(
                 'Home',
                 style: Theme.of(context).textTheme.bodyMedium,
@@ -95,24 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
+              leading: const Icon(Icons.category, color: Colors.white,),
               title: Text(
-                'Business',
+                'Categorías',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               selected: _selectedIndex == 1,
               onTap: () {
                 _onItemTapped(1);
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text(
-                'School',
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              selected: _selectedIndex == 2,
-              onTap: () {
-                _onItemTapped(2);
                 Navigator.pop(context);
               },
             ),

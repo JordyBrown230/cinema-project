@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:project/MovieDetails/casting.dart';
+import 'package:project/MovieDetails/movie_reviews.dart';
+import 'package:project/MovieDetails/similar_movies.dart';
+import 'package:project/MovieDetails/you_tube_player.dart';
 import 'package:project/constants.dart';
 import 'package:project/models/movie.dart';
+import 'package:project/genres/genres.dart';
+
+import 'movie_genders.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   final Movie movie;
 
-  const MovieDetailsScreen({required this.movie, super.key});
+  const MovieDetailsScreen({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {
+    List<String> genres = getGenresFromIds(movie.genreIds);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(movie.title),
@@ -17,24 +26,89 @@ class MovieDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.6),
-                    Colors.transparent,
-                  ],
-                ),
+            /*SizedBox(
+              width: double.infinity,
+              height: 200,
+              child: Stack(
+                children: [
+                  Image.network(
+                    '${Constants.imagePath}${movie.backDropPath}',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 200,
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.black.withOpacity(0.6),
+                            Colors.transparent,
+                          ],
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            movie.title,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 3),
+                          Text(
+                            movie.releaseDate,
+                            style: TextStyle(
+                              color: Colors.white.withOpacity(0.8),
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 16,
+                    right: 16,
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                          size: 20,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '${movie.voteAverage.toInt()}/10',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              child: Image.network(
-                '${Constants.imagePath}${movie.backDropPath}',
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: 200,
-              ),
+            ),*/
+            TrailerWidget(movieID: movie.id, posterPath: movie.posterPath),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: _buildDetailItem('Popularidad:', '${movie.popularity}'),
             ),
+            const SizedBox(height: 10),
+            MovieGenders(genres: genres),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -55,15 +129,28 @@ class MovieDetailsScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildDetailItem('Fecha de salida', movie.releaseDate),
-                      _buildDetailItem('Popularidad:', '${movie.popularity}'),
-                      _buildDetailItem('Promedio de votos:', '${movie.voteAverage}/10'),
-                    ],
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Elenco',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
                   ),
+                  MovieCastWidget(movieId: movie.id),
+                  const SizedBox(height: 30),
+                  MovieReviews(movieId: movie.id),
+                  const SizedBox(height: 30),
+                  const Text(
+                    'Recomendaciones',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SimilarMovies(movieId: movie.id)
                 ],
               ),
             ),
@@ -74,22 +161,14 @@ class MovieDetailsScreen extends StatelessWidget {
   }
 
   Widget _buildDetailItem(String title, String value) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+   return Row(
       children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 16,
-            color: Colors.white,
-          ),
-        ),
+        const Icon(Icons.people),
+        const SizedBox(width: 8),
         Text(
           value,
           style: const TextStyle(
             fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
           ),
         ),
       ],
