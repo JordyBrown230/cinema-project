@@ -10,7 +10,7 @@ class AppTheme {
   static final ThemeData themeData = ThemeData(
     scaffoldBackgroundColor: backgroundColor,
     appBarTheme: AppBarTheme(
-      color: nvColor,
+      color: backgroundColor,
       iconTheme: IconThemeData(color: whiteColor),
       toolbarTextStyle: TextStyle(
         color: whiteColor,

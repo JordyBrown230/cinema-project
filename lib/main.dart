@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/menu/menu.dart';
+import 'package:project/menu/main.dart';
 import 'package:project/theme/app_theme.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.themeData,
       home: const Scaffold(
-        body: Menu(),
+        body: MyApp(),
       ),
     );
   }

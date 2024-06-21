@@ -26,7 +26,7 @@ class MovieDetailsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /*SizedBox(
+            SizedBox(
               width: double.infinity,
               height: 200,
               child: Stack(
@@ -99,9 +99,7 @@ class MovieDetailsScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),*/
-            TrailerWidget(movieID: movie.id, posterPath: movie.posterPath),
-            const SizedBox(height: 10),
+            ),
             Padding(
               padding: const EdgeInsets.all(18.0),
               child: _buildDetailItem('Popularidad:', '${movie.popularity}'),
@@ -140,6 +138,17 @@ class MovieDetailsScreen extends StatelessWidget {
                   ),
                   MovieCastWidget(movieId: movie.id),
                   const SizedBox(height: 30),
+                  const Text(
+                    'Trailer',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 30),
+                  TrailerWidget(movieID: movie.id, posterPath: movie.posterPath),
+                  const SizedBox(height: 20),
                   MovieReviews(movieId: movie.id),
                   const SizedBox(height: 30),
                   const Text(
@@ -150,7 +159,7 @@ class MovieDetailsScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SimilarMovies(movieId: movie.id)
+                  SimilarMovies(movieId: movie.id),
                 ],
               ),
             ),
@@ -161,7 +170,7 @@ class MovieDetailsScreen extends StatelessWidget {
   }
 
   Widget _buildDetailItem(String title, String value) {
-   return Row(
+    return Row(
       children: [
         const Icon(Icons.people),
         const SizedBox(width: 8),

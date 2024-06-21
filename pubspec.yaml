@@ -11,8 +11,9 @@ dependencies:
   dio: ^5.4.3+1
   flutter:
     sdk: flutter
+  font_awesome_flutter: ^10.7.0
   http: ^1.2.1
-  youtube_player_flutter: ^9.0.1
+  youtube_player_flutter: ^8.0.0
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +26,4 @@ flutter:
     - assets/img/1.jpg
     - assets/img/2.jpg
     - assets/img/3.jpg
+    - assets/img/recomendacion.gif

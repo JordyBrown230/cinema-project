@@ -3,7 +3,6 @@ import 'package:project/constants.dart';
 import 'package:project/models/movie.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/models/review.dart';
-import 'package:project/models/review.dart';
 
 class API {
   Future<List<Movie>> getMoviesOnTheaters() async {
@@ -108,7 +107,6 @@ class API {
   }
 
   Future<List<Review>> getReviews(int movieId) async {
-    print(movieId);
     final response = await http.get(Uri.parse(
         '${Constants.baseUrl}/3/movie/$movieId/reviews?api_key=${Constants.apiKey}&&language=es'));
     if (response.statusCode == 200) {
