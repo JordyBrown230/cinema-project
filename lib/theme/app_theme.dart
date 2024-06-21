@@ -6,8 +6,7 @@ class AppTheme {
   
   static Color whiteColor = Color(int.parse(_whiteColor.replaceAll('#', '0xff')));
   static Color nvColor = Color(int.parse(_nvColor.replaceAll('#', '0xff')));
-  static Color backgroundColor = const Color(0xFF121212);  // Color de fondo para un tema oscuro pero no negro absoluto
-  
+  static Color backgroundColor = const Color(0xFF121212);  
   static final ThemeData themeData = ThemeData(
     scaffoldBackgroundColor: backgroundColor,
     appBarTheme: AppBarTheme(

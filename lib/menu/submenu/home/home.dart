@@ -5,6 +5,7 @@ import 'package:project/home/ListViewUpcomingMovies/upcomingMovies.dart';
 import 'package:project/home/carrousel/carrousel.dart';
 import 'package:project/api/api.dart';
 import 'package:project/models/movie.dart';
+import 'package:project/theme/app_theme.dart';
 
 import 'results_movies.dart';
 
@@ -42,7 +43,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2D2A32),
+      backgroundColor: AppTheme.backgroundColor,
       body: Stack(
         children: [
           SingleChildScrollView(
