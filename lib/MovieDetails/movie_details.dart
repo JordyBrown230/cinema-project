@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:project/Favorites/favorite-movies.dart';
 import 'package:project/Favorites/favorite-provider.dart';
 import 'package:project/MovieDetails/casting.dart';
 import 'package:project/MovieDetails/movie_reviews.dart';

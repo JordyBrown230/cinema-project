@@ -96,7 +96,7 @@ class TrailerWidgetState extends State<TrailerWidget>
                   'https://image.tmdb.org/t/p/w500${widget.posterPath}}',
                   fit: BoxFit.cover,
                 ),
-                controlsTimeOut: const Duration(milliseconds: 1500),
+                controlsTimeOut: const Duration(milliseconds: 1800),
                 aspectRatio: 16 / 9,
                 controller: _controller!,
                 showVideoProgressIndicator: true,

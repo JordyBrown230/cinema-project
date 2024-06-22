@@ -4,7 +4,6 @@ import 'package:project/home/ListViewDiscoverMovies/discoverMovies.dart';
 import 'package:project/home/ListViewUpcomingMovies/upcomingMovies.dart';
 import 'package:project/home/carrousel/carrousel.dart';
 import 'package:project/api/api.dart';
-import 'package:project/menu/menu_bar.dart';
 import 'package:project/models/movie.dart';
 import 'package:project/theme/app_theme.dart';
 
