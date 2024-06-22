@@ -40,7 +40,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.category),
+            icon: Icon(Icons.movie),
             label: 'Categorías',
           ),
           BottomNavigationBarItem(

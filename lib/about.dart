@@ -48,24 +48,6 @@ class AboutAppScreen extends StatelessWidget {
                 role: 'Developer',
                 imagePath: 'assets/img/yo.jpg',
               ),
-              const SizedBox(height: 32),
-              const SizedBox(height: 16),
-              SizedBox(
-                height: 200,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Image.network(
-                        'https://image.tmdb.org/t/p/original/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg'), // Reemplaza con URLs reales
-                    const SizedBox(width: 16),
-                    Image.network(
-                        'https://image.tmdb.org/t/p/original/nP6RliHjxsz4irTKsxe8FRhKZYl.jpg'),
-                    const SizedBox(width: 16),
-                    Image.network(
-                        'https://image.tmdb.org/t/p/original/gKkl37BQuKTanygYQG1pyYgLVgf.jpg'),
-                  ],
-                ),
-              ),
             ],
           ),
         ),
