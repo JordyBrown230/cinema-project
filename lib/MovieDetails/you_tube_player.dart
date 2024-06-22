@@ -3,18 +3,20 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:project/api/api.dart';
 import 'package:flutter/services.dart';
 
-class TrailerWidget extends StatefulWidget {
+class MovieTrailerWidget extends StatefulWidget {
   final int movieID;
   final String? posterPath;
 
-  const TrailerWidget({super.key, required this.movieID, required this.posterPath});
+  const MovieTrailerWidget({super.key, required this.movieID, required this.posterPath});
 
   @override
-  TrailerWidgetState createState() => TrailerWidgetState();
+  MovieTrailerWidgetState createState() => MovieTrailerWidgetState();
 }
 
-class TrailerWidgetState extends State<TrailerWidget>
-    with SingleTickerProviderStateMixin {
+class MovieTrailerWidgetState extends State<MovieTrailerWidget>
+
+
+  with SingleTickerProviderStateMixin {
   YoutubePlayerController? _controller;
   String _videoKey = "";
   bool _isControllerInitialized = false;
@@ -23,12 +25,12 @@ class TrailerWidgetState extends State<TrailerWidget>
   @override
   void initState() {
     super.initState();
-    _loadTrailerKey();
+    loadKey();
   }
 
-  Future<void> _loadTrailerKey() async {
+  Future<void> loadKey() async {
     try {
-      final String? videoKey = await _getTrailerKey();
+      final String? videoKey = await getKey();
       if (videoKey != null) {
         if (mounted) {
           setState(() {
@@ -46,7 +48,6 @@ class TrailerWidgetState extends State<TrailerWidget>
           });
         }
       } else {
-        // print('Error: Trailer key is null');
         if (mounted) {
           setState(() {
             _isControllerInitialized = true;
@@ -54,8 +55,6 @@ class TrailerWidgetState extends State<TrailerWidget>
         }
       }
     } catch (e) {
-      //print('Error fetching trailer key: $e');
-      // Handle error
       if (mounted) {
         setState(() {
           _isControllerInitialized = true;
@@ -82,9 +81,8 @@ class TrailerWidgetState extends State<TrailerWidget>
     }
   }
 
-  Future<String?> _getTrailerKey() async {
-    final API apiService = API();
-    return await apiService.fetchTrailerKey(widget.movieID);
+  Future<String?> getKey() async {
+    return await API().fetchTrailerKey(widget.movieID);
   }
 
   @override
@@ -137,7 +135,7 @@ class TrailerWidgetState extends State<TrailerWidget>
                 color: Colors.black,
                 child: const Center(
                   child: Text(
-                    "Trailer no disponible",
+                    "Este vídeo no está disponible..",
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                 ),

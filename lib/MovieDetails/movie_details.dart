@@ -169,7 +169,7 @@ class MovieDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 30),
-                  TrailerWidget(movieID: movie.id, posterPath: movie.posterPath),
+                  MovieTrailerWidget(movieID: movie.id, posterPath: movie.posterPath),
                   const SizedBox(height: 20),
                   MovieReviews(movieId: movie.id),
                   const SizedBox(height: 30),
