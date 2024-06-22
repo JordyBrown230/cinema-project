@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:project/Favorites/favorite-movies.dart';
+import 'package:project/Favorites/favorite-provider.dart';
 import 'package:project/MovieDetails/casting.dart';
 import 'package:project/MovieDetails/movie_reviews.dart';
 import 'package:project/MovieDetails/similar_movies.dart';
@@ -95,6 +98,25 @@ class MovieDetailsScreen extends StatelessWidget {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 16,
+                    right: 16,
+                    child: Consumer<FavoritesProvider>(
+                      builder: (context, favoritesProvider, child) {
+                        final isFavorite =
+                            favoritesProvider.isFavorite(movie);
+                        return IconButton(
+                          icon: Icon(
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
+                            color: isFavorite ? Colors.red : Colors.white,
+                          ),
+                          onPressed: () {
+                            favoritesProvider.toggleFavorite(movie);
+                          },
+                        );
+                      },
                     ),
                   ),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/Favorites/favorite-movies.dart';
 import 'package:project/home/ListViewCategories/view_categories.dart';
 import 'package:project/menu/menu_bar.dart';
 import 'package:project/menu/submenu/home/home.dart';
@@ -18,7 +19,7 @@ class MyAppState extends State<MyApp> {
   final List<Widget> _screens = [
     const HomePage(),
     const CategoriesScreen(),
-    const Center(child: Text('FAVORITOS')),
+    const FavoriteMovies(),
     const Center(child: Text('PERFIL'))
   ];
 

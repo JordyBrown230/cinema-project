@@ -139,7 +139,6 @@ class API {
         return null;
       }
     } catch (e) {
-      //print('Error fetching movie trailer: $e');
       return null;
     }
   }

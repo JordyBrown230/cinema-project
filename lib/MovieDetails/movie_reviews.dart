@@ -1,5 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:project/api/api.dart';
 import 'package:project/models/review.dart';
 
@@ -27,7 +27,9 @@ class _MovieReviewsState extends State<MovieReviews> {
         reviews = fetchedReviews;
       });
     } catch (e) {
-      throw Exception('Error al cargar los datos');
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

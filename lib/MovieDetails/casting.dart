@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'cast_card.dart';
 import 'package:project/api/api.dart';
@@ -26,7 +27,9 @@ class MovieCastWidgetState extends State<MovieCastWidget> {
         cast = fetchedCast;
       });
     } catch (e) {
-      throw Exception('Error al cargar los datos');
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

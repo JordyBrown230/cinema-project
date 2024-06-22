@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/Favorites/favorite-provider.dart';
+import 'package:provider/provider.dart';
 import 'package:project/menu/main.dart';
 import 'package:project/theme/app_theme.dart';
 
@@ -11,11 +13,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.themeData,
-      home: const Scaffold(
-        body: MyApp(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.themeData,
+        home: const Scaffold(
+          body: MyApp(),
+        ),
       ),
     );
   }
