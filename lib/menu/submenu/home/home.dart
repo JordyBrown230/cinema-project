@@ -40,6 +40,14 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void _clearSearch() {
+    FocusScope.of(context).unfocus(); 
+    _searchController.clear(); 
+    setState(() {
+      _searchResults = []; 
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +58,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 50), 
                 Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Container(
@@ -59,24 +68,30 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: TextField(
-                      controller: _searchController,
-                      style: const TextStyle(color: Colors.white),
-                      decoration: const InputDecoration(
-                        hintText: 'Buscar',
-                        hintStyle: TextStyle(color: Colors.grey),
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.only(left: 5, right: 10),
-                          child: Icon(Icons.search, color: Colors.grey),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.search, color: Colors.grey),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: TextField(
+                            controller: _searchController,
+                            style: const TextStyle(color: Colors.white),
+                            decoration: const InputDecoration(
+                              hintText: 'Buscar',
+                              hintStyle: TextStyle(color: Colors.grey),
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.symmetric(vertical: 15),
+                            ),
+                            onChanged: (value) {
+                              _performSearch(value);
+                            },
+                          ),
                         ),
-                        prefixIconConstraints:
-                            BoxConstraints(minWidth: 40, maxHeight: 24),
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(vertical: 15),
-                      ),
-                      onChanged: (value) {
-                        _performSearch(value);
-                      },
+                        IconButton(
+                          icon: const Icon(Icons.close, color: Colors.grey),
+                          onPressed: _clearSearch,
+                        ),
+                      ],
                     ),
                   ),
                 ),
