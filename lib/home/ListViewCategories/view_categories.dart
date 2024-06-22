@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/genres/genres.dart';
+import 'package:project/theme/app_theme.dart';
 import 'categories_movies.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -8,7 +9,7 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2D2A32),
+      backgroundColor: AppTheme.backgroundColor,
       body: ListView.builder(
         itemCount: genres.length,
         itemBuilder: (context, index) {
