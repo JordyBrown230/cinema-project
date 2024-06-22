@@ -63,7 +63,7 @@ class API {
 
   Future<List<Movie>> searchMovies(String nombre) async {
     final response = await http.get(Uri.parse(
-        '${Constants.baseUrl}/3/search/movie?api_key=${Constants.apiKey}&query=$nombre'));
+        '${Constants.baseUrl}/3/search/movie?api_key=${Constants.apiKey}&query=$nombre&&language=es'));
     if (response.statusCode == 200) {
       try {
         final data = json.decode(response.body)['results'] as List;
