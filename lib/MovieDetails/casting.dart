@@ -37,15 +37,20 @@ class MovieCastWidgetState extends State<MovieCastWidget> {
   Widget build(BuildContext context) {
     return cast.isEmpty
         ? const Center(child: CircularProgressIndicator())
-        : SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: cast.map((actor) {
-                return CastCard(
+        : SizedBox(
+            height: 250, 
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: cast.map((actor) {
+                  return CastCard(
                     name: actor['name'],
                     profilePath: actor['profile_path'],
-                    character: actor['character']);
-              }).toList(),
+                    character: actor['character'],
+                  );
+                }).toList(),
+              ),
             ),
           );
   }

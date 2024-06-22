@@ -148,7 +148,7 @@ class MovieDetailsScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
                   const Text(
                     'Elenco',
                     style: TextStyle(
@@ -157,6 +157,7 @@ class MovieDetailsScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
+                  const SizedBox(height: 10),
                   MovieCastWidget(movieId: movie.id),
                   const SizedBox(height: 30),
                   const Text(
