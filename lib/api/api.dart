@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:project/constants.dart';
+import 'package:project/variables.dart';
 import 'package:project/models/movie.dart';
 import 'package:http/http.dart' as http;
 import 'package:project/models/review.dart';
@@ -7,7 +7,7 @@ import 'package:project/models/review.dart';
 class API {
   Future<List<Movie>> getMoviesOnTheaters() async {
     final response = await http.get(Uri.parse(
-        '${Constants.baseUrl}/3/movie/now_playing?api_key=${Constants.apiKey}&&language=es'));
+        '${Variables.baseUrl}/3/movie/now_playing?api_key=${Variables.apiKey}&&language=es'));
     if (response.statusCode == 200) {
       try {
         final decodedData = jsonDecode(response.body)['results'] as List;
@@ -23,7 +23,7 @@ class API {
 
   Future<List<Movie>> getUpcomingMovies() async {
     final response = await http.get(Uri.parse(
-        '${Constants.baseUrl}/3/movie/upcoming?api_key=${Constants.apiKey}&&language=es'));
+        '${Variables.baseUrl}/3/movie/upcoming?api_key=${Variables.apiKey}&&language=es'));
     if (response.statusCode == 200) {
       try {
         final decodedData = jsonDecode(response.body)['results'] as List;
@@ -38,7 +38,7 @@ class API {
 
   Future<List<Movie>> getDiscoverMovies() async {
     final response = await http.get(Uri.parse(
-        '${Constants.baseUrl}/3/discover/movie?api_key=${Constants.apiKey}&&language=es'));
+        '${Variables.baseUrl}/3/discover/movie?api_key=${Variables.apiKey}&&language=es'));
     if (response.statusCode == 200) {
       try {
         final decodedData = jsonDecode(response.body)['results'] as List;
@@ -53,7 +53,7 @@ class API {
 
   Future<List<dynamic>> fetchCast(int movieId) async {
     final response = await http.get(Uri.parse(
-        '${Constants.baseUrl}/3/movie/$movieId/credits?api_key=${Constants.apiKey}'));
+        '${Variables.baseUrl}/3/movie/$movieId/credits?api_key=${Variables.apiKey}'));
     if (response.statusCode == 200) {
       return json.decode(response.body)['cast'];
     } else {
@@ -63,7 +63,7 @@ class API {
 
   Future<List<Movie>> searchMovies(String nombre) async {
     final response = await http.get(Uri.parse(
-        '${Constants.baseUrl}/3/search/movie?api_key=${Constants.apiKey}&query=$nombre&&language=es'));
+        '${Variables.baseUrl}/3/search/movie?api_key=${Variables.apiKey}&query=$nombre&&language=es'));
     if (response.statusCode == 200) {
       try {
         final data = json.decode(response.body)['results'] as List;
@@ -78,7 +78,7 @@ class API {
 
   Future<List<Movie>> getByGender(int gender) async {
     final response = await http.get(Uri.parse(
-        '${Constants.baseUrl}/3/discover/movie?api_key=${Constants.apiKey}&with_genres=$gender&&language=es'));
+        '${Variables.baseUrl}/3/discover/movie?api_key=${Variables.apiKey}&with_genres=$gender&&language=es'));
     if (response.statusCode == 200) {
       try {
         final decodedData = jsonDecode(response.body)['results'] as List;
@@ -93,7 +93,7 @@ class API {
 
   Future<List<Movie>> similars(int movieId) async {
     final response = await http.get(Uri.parse(
-        '${Constants.baseUrl}/3/movie/$movieId/recommendations?api_key=${Constants.apiKey}&&language=es'));
+        '${Variables.baseUrl}/3/movie/$movieId/recommendations?api_key=${Variables.apiKey}&&language=es'));
     if (response.statusCode == 200) {
       try {
         final decodedData = jsonDecode(response.body)['results'] as List;
@@ -108,7 +108,7 @@ class API {
 
   Future<List<Review>> getReviews(int movieId) async {
     final response = await http.get(Uri.parse(
-        '${Constants.baseUrl}/3/movie/$movieId/reviews?api_key=${Constants.apiKey}&&language=es'));
+        '${Variables.baseUrl}/3/movie/$movieId/reviews?api_key=${Variables.apiKey}&&language=es'));
     if (response.statusCode == 200) {
       try {
         final decodedData = jsonDecode(response.body)['results'] as List;
@@ -124,7 +124,7 @@ class API {
   Future<String?> fetchTrailerKey(int movieId) async {
     try {
       final trailerUrl =
-          'https://api.themoviedb.org/3/movie/$movieId/videos?api_key=${Constants.apiKey}';
+          'https://api.themoviedb.org/3/movie/$movieId/videos?api_key=${Variables.apiKey}';
 
       final response = await http.get(Uri.parse(trailerUrl));
       if (response.statusCode == 200) {

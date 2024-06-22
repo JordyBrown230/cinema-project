@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:project/MovieDetails/movie_details.dart';
 import 'package:project/api/api.dart';
-import 'package:project/constants.dart';
+import 'package:project/variables.dart';
 import 'package:project/models/movie.dart';
 
 class Carrousel extends StatefulWidget {
@@ -78,7 +78,7 @@ class _CarrouselState extends State<Carrousel> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: Image.network(
-                              '${Constants.imagePath}${movie.posterPath}',
+                              '${Variables.imagePath}${movie.posterPath}',
                               filterQuality: FilterQuality.high,
                               fit: BoxFit.cover,
                               width: MediaQuery.of(context).size.width,

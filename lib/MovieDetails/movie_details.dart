@@ -5,7 +5,7 @@ import 'package:project/MovieDetails/casting.dart';
 import 'package:project/MovieDetails/movie_reviews.dart';
 import 'package:project/MovieDetails/similar_movies.dart';
 import 'package:project/MovieDetails/you_tube_player.dart';
-import 'package:project/constants.dart';
+import 'package:project/variables.dart';
 import 'package:project/models/movie.dart';
 import 'package:project/genres/genres.dart';
 
@@ -34,7 +34,7 @@ class MovieDetailsScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   Image.network(
-                    '${Constants.imagePath}${movie.backDropPath}',
+                    '${Variables.imagePath}${movie.backDropPath}',
                     fit: BoxFit.cover,
                     width: double.infinity,
                     height: 200,

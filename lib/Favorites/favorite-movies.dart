@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/MovieDetails/movie_details.dart';
-import 'package:project/constants.dart';
+import 'package:project/variables.dart';
 import 'package:provider/provider.dart';
 import 'package:project/Favorites/favorite-provider.dart';
 
@@ -33,7 +33,7 @@ class FavoriteMovies extends StatelessWidget {
                   subtitle: Text(movie.releaseDate,
                       style: const TextStyle(color: Colors.white)),
                   leading: Image.network(
-                    '${Constants.imagePath}${movie.posterPath}',
+                    '${Variables.imagePath}${movie.posterPath}',
                     width: 50,
                   ),
                   onTap: () {

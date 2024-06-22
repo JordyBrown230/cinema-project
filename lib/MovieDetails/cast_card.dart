@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/constants.dart';
+import 'package:project/variables.dart';
 
 class CastCard extends StatelessWidget {
   final String name;
@@ -19,7 +19,7 @@ class CastCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
             child: profilePath != null
                 ? Image.network(
-                    '${Constants.imagePath}$profilePath',
+                    '${Variables.imagePath}$profilePath',
                     fit: BoxFit.cover,
                     width: 120,
                     height: 160,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/MovieDetails/movie_details.dart';
-import 'package:project/constants.dart';
+import 'package:project/variables.dart';
 import 'package:project/models/movie.dart';
 
 class ResultsMovies extends StatelessWidget {
@@ -28,7 +28,7 @@ class ResultsMovies extends StatelessWidget {
                 style: const TextStyle(color: Colors.white)),
             leading: searchResults[index].posterPath != null
                 ? Image.network(
-                    '${Constants.imagePath}${searchResults[index].posterPath}')
+                    '${Variables.imagePath}${searchResults[index].posterPath}')
                 : Container(width: 50, height: 50, color: Colors.grey),
           ),
           onTap: () {
