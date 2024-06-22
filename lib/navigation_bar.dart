@@ -49,7 +49,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
-            label: 'About',
+            label: 'Acerca de',
           ),
         ],
         currentIndex: _selectedIndex,
